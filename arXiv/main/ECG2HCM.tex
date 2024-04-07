@@ -1,0 +1,169 @@
+\documentclass[11pt]{article}
+
+\let\counterwithout\relax
+\let\counterwithin\relax
+
+\usepackage{amsmath, amsfonts, amssymb, amsthm, bm, graphicx, mathtools, enumerate,multirow}
+%\usepackage[affil-it]{authblk}
+\usepackage{natbib}
+\usepackage[CJKbookmarks=true,
+bookmarksnumbered=true,
+bookmarksopen=true,
+colorlinks=true,
+citecolor=blue,
+linkcolor=blue,
+anchorcolor=blue,
+urlcolor=blue]{hyperref}
+% \usepackage{hyperref}
+\usepackage[usenames]{color}
+\usepackage[letterpaper, left=1.2truein, right=1.2truein, top = 1.2truein,
+bottom = 1.2truein]{geometry}
+\usepackage[ruled, lined, commentsnumbered]{algorithm2e}
+\usepackage{prettyref,soul}
+
+\usepackage{apptools} %Ya
+%\usepackage{enumitem} %Ya
+\usepackage{chngcntr} % define \counterwithin
+\AtAppendix{\counterwithin{lemma}{section}} %Ya
+\usepackage{tikz}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{enumitem}
+
+
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{assumption}{Assumption}
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}
+
+
+\newrefformat{eq}{(\ref{#1})}
+\newrefformat{chap}{Chapter~\ref{#1}}
+\newrefformat{sec}{Section~\ref{#1}}
+\newrefformat{algo}{Algorithm~\ref{#1}}
+\newrefformat{fig}{Fig.~\ref{#1}}
+\newrefformat{tab}{Table~\ref{#1}}
+\newrefformat{rmk}{Remark~\ref{#1}}
+\newrefformat{clm}{Claim~\ref{#1}}
+\newrefformat{def}{Definition~\ref{#1}}
+\newrefformat{cor}{Corollary~\ref{#1}}
+\newrefformat{lmm}{Lemma~\ref{#1}}
+\newrefformat{lemma}{Lemma~\ref{#1}}
+\newrefformat{prop}{Proposition~\ref{#1}}
+\newrefformat{app}{Appendix~\ref{#1}}
+\newrefformat{ex}{Example~\ref{#1}}
+\newrefformat{cond}{Condition~\ref{#1}}
+
+
+
+\def\pr{\mathbb{P}} % the symbol P for probability used the sans serif letter
+\def\E{\mathbb{E}} % the symbol E for expectation used the sans serif letter
+\def\Cov{\mathrm{Cov}} % the symbol Cov for covariance used the sans serif letter
+\def\Var{\mathrm{Var}} % the symbol Var for covariance used the sans serif letter
+\def\vec{\mathrm{vec}} % the symbol Var for covariance used the sans serif letter
+
+
+\newcommand{\tp}{\intercal}
+\newcommand{\brm}[1]{\bm{\mathrm{#1}}}
+\newcommand{\bigO}{\ensuremath{\mathop{}\mathopen{}\mathcal{O}\mathopen{}}}
+\newcommand{\smallO}{ \scalebox{0.7}{$\mathcal{O}$}}
+\newcommand{\bigOp}{\bigO_\mathrm{p}}
+\newcommand{\smallOp}{\smallO_\mathrm{p}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\balpha}{\bm{\alpha}}
+\newcommand{\bbeta}{\bm{\beta}}
+\newcommand{\btheta}{\bm{\theta}}
+\newcommand{\bX}{\brm{X}}
+\newcommand{\bB}{\brm{B}}
+
+\newcommand{\argmin}{\ensuremath{\operatornamewithlimits{arg\,min}}}
+\newcommand{\BNTR}{BroadcasTR}
+%\newcommand{\supp}[1]{{\bf\textcolor{red}{#1}}}
+
+%\newcommand{\hh}[1]{{\bf\textcolor{red}{[hl: #1]}}}
+\newcommand{\hh}[1]{{\bf\textcolor{red}{#1}}}
+%%%%%%%%%%
+%
+\newcommand{\ya}[1]{{\bf\textcolor{cyan}{[Ya: #1]}}}
+%\newcommand{\supp}[1]{{\bf\textcolor{red}{#1}}}
+\newcommand{\supp}[1]{#1}
+
+
+%%%%%%%ya for unpenalized and penalized \hat{m}
+\newcommand{\LS}{\rm LS}
+\newcommand{\PLS}{\rm PLS}
+
+
+\newcommand{\revise}[1]{\textcolor{blue}{#1}}
+\newenvironment{revise_block}{\color{blue}}{}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{authblk}
+%\title{Masked Modeling for ECG}
+%\title{Masked Electrocardiograph Transformer for multi-label Classification}
+\title{Using deep learning to predict HCM based ECG}
+
+%\author[1,\#,*]{Ya Zhou}
+%\author[1,\#]{Xiaolin Diao}
+%\author[1]{Yanni Huo}
+%\author[1]{Yang Liu}
+%\author[2,*]{Xiaohan Fan}
+%\author[3,*,\dag]{Wei Zhao}
+%\affil[1]{Department of Information Center, Fuwai Hospital, Chinese Academy of Medical Sciences and Peking Union Medical College, Beijing, 100037, China}
+%\affil[2]{%State Key Laboratory of Cardiovascular Disease, 
+%	%Cardiac Arrhythmia Center, Fuwai Hospital, National Center for Cardiovascular Diseases, Chinese Academy of Medical Sciences and Peking Union Medical College, Beijing, 
+%	Cardiac Arrhythmia Center, Fuwai Hospital, National Center for Cardiovascular Diseases, Chinese Academy of Medical Sciences and Peking Union Medical College, Beijing, 
+%	China,  100037, China}
+%\affil[3]{Fuwai Hospital, National Center for Cardiovascular Diseases, Chinese Academy of Medical Sciences and Peking Union Medical College, Beijing, 100037, China}
+
+\renewcommand*{\Affilfont}{\small\it}
+\renewcommand\Authands{ and }
+\date{}
+
+\begin{document}
+\maketitle
+%\def\thefootnote{\#}\footnotetext{The authors  }
+%\def\thefootnote{\arabic{footnote}}
+%\def\thefootnote{*}\footnotetext{Corresponding authors: Ya Zhou (zhouya@fuwai.com), Xiaohan Fan (fanxiaohan@fuwaihospital.org), Wei Zhao (zw@fuwai.com) }\def\thefootnote{\arabic{footnote}}
+%\def\thefootnote{ \dag}\footnotetext{Supervision: Wei Zhao}
+
+
+\begin{abstract}
+test
+\end{abstract}
+Keywords: 
+
+\section{Method}
+\label{sec:method}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\bibliographystyle{rss} 
+%\bibliographystyle{acm}
+\bibliography{reference}
+
+
+
+
+\end{document}
