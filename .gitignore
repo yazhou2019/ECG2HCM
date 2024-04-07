@@ -206,4 +206,6 @@ auto/
 *~
 makecell/
 
+*.docx
+
 *.DS_Store
