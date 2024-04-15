@@ -142,9 +142,12 @@ Keywords:
 \section{Method}
 \label{sec:method}
 
-We developed a Transformer-based algorithm
-based on the 
-method proposed in a recent study. Briefly,  the method follows the pretrain-and-finetune paradigm. In pre-training, the model is and encoder-decoder network, as shown in Figure 1(A). We adopted the setting of MTECG-T presented in the previous study. The encoder consists by 12 Transformer blocks with a self-attention head of 3 and a latent dimension  of 192, while the decoder is a 1-layer Transformer with a self-attention head of 3 and a latent dimension of 128. 
+We developed a Transformer-based algorithm based on the method proposed in a recent study. Briefly,  the method follows the pretrain-and-finetune paradigm, as shown in Figure 1. In pre-training, the model is an encoder-decoder network. We adopted the setting of MTECG-T presented in the previous study. The encoder consists by 12 Transformer blocks with a self-attention head of 3 and a latent dimension  of 192, while the decoder is a 1-layer Transformer with a self-attention head of 3 and a latent dimension of 128.  The $12 \times 5000$ ECG signal is split into 200 non-overlapping segments along the time dimension and learnable positional embedding are added to preserve the sequential information. In this study, a masking ratio of 0.25 and a per-segment normalization reconstruction target are adopted. To learn more information from the ECG signal, we pre-train the model on the combination of training dataset and the unlabeled dataset as shown in Figure 1(A). 
+
+
+
+
+
 In fine-tuning, we do not only apply a multi-class classification to detect subtypes of HCM. Instead, we consider an additional binary classfication task to detect if HCM exists in a multi-task architecture. Due to the overlap information for the two tasks, we adopt the hard parameter sharing method, as shown in Figure 1(B). 
 
 
