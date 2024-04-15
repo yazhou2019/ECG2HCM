@@ -142,7 +142,58 @@ Keywords:
 \section{Method}
 \label{sec:method}
 
+We developed a Transformer-based algorithm
+based on the 
+method proposed in a recent study. Briefly,  the method follows the pretrain-and-finetune paradigm. In pre-training, the model is and encoder-decoder network, as shown in Figure 1(A). We adopted the setting of MTECG-T presented in the previous study. The encoder consists by 12 Transformer blocks with a self-attention head of 3 and a latent dimension  of 192, while the decoder is a 1-layer Transformer with a self-attention head of 3 and a latent dimension of 128. 
+In fine-tuning, we do not only apply a multi-class classification to detect subtypes of HCM. Instead, we consider an additional binary classfication task to detect if HCM exists in a multi-task architecture. Due to the overlap information for the two tasks, we adopt the hard parameter sharing method, as shown in Figure 1(B). 
 
+
+
+
+
+%adopted a multi-tasks architecture, where the first task is the detection of HCM and the second task is to distinguish the type, as show in Figure 1(B). Consider 
+
+
+
+
+
+
+%the encoder consists by 12 Transformer blocks with a self-attention head of 3 and a latent dimension  of 192, while the decoder is a 1-layer Transformer with a self-attention head of 3 and a latent dimension of 128. 
+
+%the neural network includes 3 parts, i.e., the encoder, decoder and the classification head, as shown in Figure 1. We adopted the setting of MTECG-T presented in the previous study. The encoder consists by 12 Transformer blocks with a self-attention head of 3 and a latent dimension  of 192, while the decoder is a 1-layer Transformer with a self-attention head of 3 and a latent dimension of 128. For the classification head, we consider a multi-task architecture. 
+
+
+
+
+
+ 
+ 
+% method follows the pretrain-and-finetune paradigm and
+% 
+% 
+%
+%  consists of 5 majors components including segment operation, mask operation, encoder, decoder, and reconstruction target. We adopted the setting of MTECG-T.  The $12 \times 5000$ ECG signal is split into 200 non-overlapping segments along the time dimension with size 25. The encoder consists by 12 Transformer blocks with a self-attention head of 3 and a latent dimension  of 192, while the decoder is a 1-layer Transformer with a self-attention head of 3 and a latent dimension of 128.
+% 
+ 
+ %A uniform masked strategy and per-segment normalization are utilized. 
+ 
+ 
+% Our model training is similar to the previous study and follows the pretrain-and-finetune paradigm. We pre-train 
+% 
+%  The pre-training is on the training set associated with those unmatched ECG signals. 
+
+
+
+%we adopted MTECG-T as the backbone.   
+
+
+
+
+%The 12 * 5000 ECG signal is split into 200 non-overlapping segments along the time dimension with size 25. The methods 
+
+%We followed the pretrain-and-finetune paradigm by using the suggested hyper-parameters in the aforementioned study. 
+
+%The method consists of 5 major components, segment operation, mask operation, encoder, decoder, and reconstruction target. 
 
 
 
