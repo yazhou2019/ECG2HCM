@@ -107,7 +107,7 @@ bottom = 1.2truein]{geometry}
 \usepackage{authblk}
 %\title{Masked Modeling for ECG}
 %\title{Masked Electrocardiograph Transformer for multi-label Classification}
-\title{Using deep learning to predict HCM based ECG}
+\title{Using deep learning to detect HCM from ECG}
 
 %\author[1,\#,*]{Ya Zhou}
 %\author[1,\#]{Xiaolin Diao}
@@ -142,13 +142,28 @@ Keywords:
 \section{Method}
 \label{sec:method}
 
-We developed a Transformer-based algorithm based on the method proposed in a recent study. Briefly,  our approach follows the pretrain-and-finetune paradigm, as shown in Figure 1. During pre-training, the model is an encoder-decoder network, with the same setting as MTECG-T presented in the previous study. Specifically, the encoder comprises 12 Transformer blocks with a self-attention head of 3 and a latent dimension of 192, while the decoder is a single-layer Transformer with a self-attention head of 3 and a latent dimension of 128. To process the $12 \times 5000$ ECG signal, we split it into 200 non-overlapping segments along the time dimension, and learnable positional embeddings are added. Additionally, we employ a masking ratio of 0.25 and adopt a per-segment normalization reconstruction target. To enhance the model's generalization capabilities, we pre-train the model using a combination of the labeled training dataset and unlabeled data, as illustrated in Figure 1(A). 
+We developed a Transformer-based algorithm based on the method proposed in a recent study. Briefly,  our approach follows the pretrain-and-finetune paradigm, as shown in Figure 1. During pre-training, the model is an encoder-decoder network, with the same setting as MTECG-T presented in the previous study. Specifically, the encoder comprises a linear projection, a positional embedding, and 12 Transformer blocks with a self-attention head of 3 and a latent dimension of 192. The decoder consists of a linear projection, a positional embedding, and a single-layer Transformer with a self-attention head of 4 and a latent dimension of 128. To process the $12 \times 5000$ ECG signal, we split it into 200 non-overlapping segments along the time dimension. The ECG segments are randomly uniformly divided into masked segments and unmasked segments with a ratio of 2.5: 7.5. 
+The pre-training objective is to reconstruct the per-segments normalization of the masked segments by using the unmasked segments.  The training hyperparameters are adopted the default setting of MTECG-T. 
+%We ado
+%600 epochs  with a 
+ To enhance the model's generalization capabilities, we pre-train the model 1600 epochs using a combination of the labeled training dataset and unlabeled data, as illustrated in Figure 1(A).
+
+
+%The unmasked segments are feed to the model to reconstruct the  per-segments normalization of the masked segments.  
+%and learnable positional embeddings are added after the linear projection layer in both encoder and decoder. Additionally, we employ a masking ratio of 0.25 and adopt a per-segment normalization reconstruction target. 
+%To enhance the model's generalization capabilities, we pre-train the model using a combination of the labeled training dataset and unlabeled data, as illustrated in Figure 1(A). 
+%
 
 
 
 
+In fine-tuning, we kept the pre-trained encoder and adopt a multi-task architecture. As shown in Figure 1(B),  the first is a binary classification task to detect HCM and the second is a multi-class classification task to detect its subtype, where we adopted the binary cross entropy and cross entropy loss functions, respectively. Recent studies have shown that simple scalarization with uniform weights actually often performs on-par with other complex multitasks methods. We therefore directly added the loss functions as the fine-tuning objective. We train the model 50 epochs using the default hyperparameters of MTECG-T and saved 50  
 
-In fine-tuning, we do not only apply a multi-class classification to detect subtypes of HCM. Instead, we consider an additional binary classfication task to detect if HCM exists in a multi-task architecture. Due to the overlap information for the two tasks, we adopt the hard parameter sharing method, as shown in Figure 1(B). 
+
+%as shown in Figure 1 (B).   
+
+
+%we do not only apply a multi-class classification to detect subtypes of HCM. Instead, we consider an additional binary classfication task to detect if HCM exists in a multi-task architecture. Due to the overlap information for the two tasks, we adopt the hard parameter sharing method, as shown in Figure 1(B). 
 
 
 
