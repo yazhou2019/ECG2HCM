@@ -139,16 +139,16 @@ test
 \end{abstract}
 Keywords: 
 
-\section{Introduction}
+\section*{Introduction}
 \label{sec:intro}
 
-
-Several Convolutional Neural Networks (CNN) have been utilized for detecting Hypertrophic Cardiomyopathy (HCM) from Electrocardiogram (ECG) data. While CNN excel at extracting local information, their limited local receptive field in the convolution operation constrains their capability to capture global information \citep{song2022ctmfnet, yang2021transformer}. In contrast, Transformer has emerged as a promising alternative, leveraging innate global self-attention mechanisms to model long-range dependencies \citep{vaswani2017attention, dosovitskiy2020image}. Numerous empirical studies have demonstrated that Transformer-based models with self-supervised pre-training outperform their CNN counterparts across various vision tasks \citep{matsoukas2021time}. For traditional ECG interpretations, we have proposed a self-supervised Transformer-based method, which significantly enhances macro F1 scores by 9.9\% to 32.0\% on the publicly available PTB-XL dataset, compared to many state-of-the-art algorithms \citep{wagner2020ptb, zhou2023masked}. 
+\subsection*{AI technique, for reference}
+Several Convolutional Neural Networks (CNN) have been utilized for detecting Hypertrophic Cardiomyopathy (HCM) from Electrocardiogram (ECG) data \citep{ko2020detection, goto2022multinational, siontis2023saliency,  siontis2024hypertrophic}. While CNN excel at extracting local information, their limited local receptive field in the convolution operation constrains their capability to capture global information \citep{song2022ctmfnet, yang2021transformer}. In contrast, Transformer has emerged as a promising alternative, leveraging innate global self-attention mechanisms to model long-range dependencies \citep{vaswani2017attention, dosovitskiy2020image}. Numerous empirical studies have demonstrated that Transformer-based models with self-supervised pre-training outperform their CNN counterparts across various vision tasks \citep{matsoukas2021time}. For traditional ECG interpretations, we have proposed a self-supervised Transformer-based method, which significantly enhances macro F1 scores by 9.9\% to 32.0\% on the publicly available PTB-XL dataset, compared to many state-of-the-art algorithms \citep{wagner2020ptb, zhou2023masked}. 
 In this study, we adopt this method within a multi-task architecture to detect the HCM and its subgroups, and evaluate the performance on a large Chinese dataset. 
 
 
 
-\section{Method}
+\section*{Method}
 \label{sec:method}
 
 %We developed a Transformer-based algorithm based on the method proposed in a recent study. Briefly,  our approach follows the pretrain-and-finetune paradigm, as shown in Figure 1. During pre-training, the model is an encoder-decoder network, with the same setting as MTECG-T presented in the previous study. Specifically, the encoder comprises a linear projection, a positional embedding, and 12 Transformer blocks with a self-attention head of 3 and a latent dimension of 192. The decoder consists of a linear projection, a positional embedding, and a single-layer Transformer with a self-attention head of 4 and a latent dimension of 128. To process the $12 \times 5000$ ECG signal, we split it into 200 non-overlapping segments along the time dimension. The ECG segments are randomly uniformly divided into masked segments and unmasked segments with a ratio of 2.5: 7.5. 
@@ -168,7 +168,7 @@ In this study, we adopt this method within a multi-task architecture to detect t
 %exhibits limitations in modeling long-range relations
 
 
-\subsection{Model development}
+\subsection*{Model development}
 
 We developed a Transformer-based algorithm based on a masked modeling method proposed in a recent study \citep{zhou2023masked}. Briefly, our approach follows the pretrain-and-finetune paradigm, as shown in Figure X. During pre-training, the model is an encoder-decoder network, with the same setting as MTECG-T, presented in the previous study \citep{zhou2023masked}. The encoder comprises a linear projection, a positional embedding, and 12 Transformer blocks with 3 self-attention heads and 192 latent dimension. The decoder consists of a linear projection, a positional embedding, and a 1-layer Transformer with 4 self-attention heads and 128 latent dimension. To handle the $12 \times 5000$ ECG signal, we split it into 200 non-overlapping segments along the time dimension, and uniformly randomly divide them into masked segments and unmasked segments with a ratio of 2.5: 7.5. The pre-training objective is to reconstruct the per-segments normalization of the masked segments using the unmasked segments. To enhance the model's generalization capabilities, we pre-train the model for 1600 epochs, with the default hyperparameters of MTECG-T, using a combination of the labeled training dataset and unlabeled dataset, as illustrated in Figure X(A).
 
