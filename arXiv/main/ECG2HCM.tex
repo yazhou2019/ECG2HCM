@@ -255,7 +255,75 @@ Therefore, we directly added the loss functions as the fine-tuning objective. We
 
 
 
+\section*{Discussion}
+\label{sec:dis}
 
+%Transformer is a network architecture based solely on the attention mechanism, primarily used for processing sequential data \citep{vaswani2017attention}. Transformer-based model has shown remarkable performances across various tasks in natural language processing and computer vision \citep{wen2022transformers}. In the filed of  ECG, several works have applied Transformer-based models to the detection of arrhythmia. Compared to CNN, 
+%Transformer can capture long distance characteristics and easily derive global information, but might struggle with capturing local features efficiently  \citep{han2022survey}. 
+%Due to the lack of inductive bias, such as the locality, a popular conception is that the successful application of Transformer requires a large labeled dataset. When the size  of ECG dataset is small, e.g, PTB-XL, a previous study demonstrate that while naively applying Transformer might produce worse performance than CNN, it is on par with CNN if proper training strategies are adopted \citep{li2021bat}.
+%Our recent study further break the aforementioned conception by proposing a  self-supervised Transformer approach, which significantly outperform a state-of-the-art CNN model on the PTB-XL dataset \citep{zhou2023masked}. Another line to improve Transformer in small labeled dataset is based on a CNN-Transformer hybrid network \citep{zhang2022self}, which pioneered modeling temporal-spectral correlations for ECG time series. Since our study shows that our pure Transformer method is better than the hybrid network method across various ECG datasets \citep{zhou2023masked}, we focus on the pure Transformer method in this study. Our experiments shows that this Transformer method  yields promising results on both the test and prospective validation set. 
+
+
+Transformer is a network architecture based solely on the attention mechanism, primarily used for processing sequential data \citep{vaswani2017attention}. Transformer-based models have demonstrated remarkable performance across various tasks in natural language processing and computer vision \citep{wen2022transformers}. In the field of ECG analysis, several studies have applied Transformer-based models to arrhythmia detection. Compared to CNNs, Transformers can capture long-distance characteristics and easily derive global information, but they might struggle with efficiently capturing local features \citep{han2022survey}. Due to the lack of inductive bias, such as locality, a common belief is that the successful application of Transformers requires a large labeled dataset. When the size of the ECG dataset is small, such as in PTB-XL, a previous study demonstrated that while naively applying Transformers might yield worse performance than CNNs, it can achieve comparable results if proper training strategies are adopted \citep{li2021bat}. Our recent study further challenges this belief by proposing a self-supervised Transformer approach, which significantly outperforms a state-of-the-art CNN model on the PTB-XL dataset \citep{zhou2023masked}. Another approach to improving Transformers with small labeled datasets is based on a self-supervised CNN-Transformer hybrid method \citep{zhang2022self}, which pioneered modeling temporal-spectral correlations for ECG time series. 
+%However, our study shows that our pure Transformer method outperforms the hybrid network method across various ECG datasets \citep{zhou2023masked}, thus we focus on the pure Transformer method in this study. 
+Since our previous study shows that our pure Transformer method outperforms the hybrid network method across various ECG datasets \citep{zhou2023masked}, we focus on the pure Transformer method in this study. 
+Our experiments demonstrate that this Transformer method yields promising results on both the test and prospective validation sets.
+%good in the test set and prospective validation set. 
+
+%in the detection of HCM and  
+
+%The experiments on the test set and the prospective validation  shows that this method per
+
+
+%, which reveal that our proposed method might align better with the ECG data. 
+
+%Therefore,  we focus on the pure Transformer method in this study. 
+
+% Therefore,  we focus on the pure Transformer method in this study. The performance of 
+
+
+
+
+%Similarly, \cite{zhang2022self} proposed an efficient CNN-Transformer hybrid network, which 
+
+%Motivated by this finding, we 
+
+
+
+
+
+
+%A popular conception is that Transformer 
+
+%It breaks the recently popular conception that vanilla ViTs are not suitable for vision tasks in lightweight regimes.
+
+%
+
+%When the size  of ECG dataset is small, e.g, PTB-XL, naively applying Transformer might produce worse performance than CNN \citep{li2021bat}. 
+
+%However, when proper
+
+%Since the ECG dataset is relatively small. 
+
+
+ %However, it might produce worse performance than CNN when naively applying Transformer on ECG data  \citep{li2021bat}. 
+
+
+
+% However, due to the lack of inductive bias, it might produce worse performance than CNN when naively applying Transformer on ECG dataset \citep{li2021bat}.  
+
+%Due to the lack of inductive bias, 
+
+
+ %However, due to the lack of inductive bias, it might produce worse performance than CNN if naively applying Transformer-based model on ECG data without proper training strategies \citep{li2021bat}. 
+
+
+%due to the lack of inductive bias, it might produce poor performance if naively applying Transformer on ECG data \citep{li2021bat}.   
+
+%while it requires more training data due to the lack of inductive bias 
+
+
+% excellent performance, it also triggered great interest for ECG tasks. 
 
 
 
